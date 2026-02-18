@@ -1,6 +1,6 @@
 # HemnetHound
 
-A Python-based web crawler for collecting property listing data from **Hemnet** (https://www.hemnet.se).
+A Python web crawler and Streamlit dashboard for collecting and exploring sold property listings from **Hemnet** (https://www.hemnet.se).
 
 ---
 
@@ -8,19 +8,43 @@ A Python-based web crawler for collecting property listing data from **Hemnet** 
 
 https://github.com/user-attachments/assets/84769665-9199-4013-a4eb-5be2811f5b81
 
+---
+
 ## Features
 
-- Crawl real estate listings from Hemnet
-- Extract structured listing data
-- Simple and extensible Python architecture
+- Crawl sold real estate listings from Hemnet using **Selenium + Chrome**
+- Extract structured listing data: name, area, sold date, final price, price change %, size (m²), rooms, monthly fee, and price per m²
+- Interactive **Streamlit** dashboard with two pages:
+  - **📊 Data** — browse, filter, and download scraped listings as CSV
+  - **🕷️ Scrape** — download fresh HTML pages and export to CSV, all from the UI
 - Fast dependency management using **uv**
+
+---
+
+## Project Structure
+
+```
+app.py               # Streamlit entry point
+main.py              # Standalone CLI crawler
+pyproject.toml       # Project metadata & dependencies
+crawlers/
+  hemnet.py          # Scraping logic (BeautifulSoup)
+  save_to_html.py    # Selenium page downloader
+  export_to_csv.py   # CSV exporter
+pages/
+  1_📊_Data.py       # Data explorer page
+  2_🕷️_Scrape.py     # Scrape control page
+soups/               # Downloaded HTML pages (auto-created)
+hemnet_data.csv      # Exported listings (auto-created)
+```
 
 ---
 
 ## Requirements
 
-- Python 3.10 or newer
+- Python 3.14 or newer
 - `uv` package manager
+- Google Chrome (for Selenium)
 
 ---
 
@@ -41,15 +65,19 @@ powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 ---
 
 ## Installation
-clone the repository:
+
+Clone the repository:
+
 ```sh
 git clone https://github.com/VAnkata19/Hemnet-Web-Crawler.git
-cd HemnetHound
+cd Hemnet-Web-Crawler
 ```
 
-Create a virtual environment using `uv`:
+Create a virtual environment and install dependencies:
+
 ```sh
 uv venv .venv
+uv sync
 ```
 
 Activate the virtual environment:
@@ -66,29 +94,51 @@ source .venv/bin/activate
 .venv\Scripts\activate
 ```
 
-Install project dependencies:
-```sh
-uv sync
-```
-
---- 
+---
 
 ## Usage
 
-Run the crawler with:
+### Streamlit Dashboard (recommended)
+
+Launch the interactive app:
+
+```sh
+uv run streamlit run app.py
+```
+
+Then open http://localhost:8501 in your browser.
+
+**Step 1 — Scrape page (🕷️)**  
+Choose the number of Hemnet result pages to download (1–50) and click **Start downloading**. The raw HTML is saved to the `soups/` folder.
+
+**Step 2 — Scrape page (🕷️)**  
+Click **Export to CSV** to parse all downloaded HTML files and write the results to `hemnet_data.csv`.
+
+**Data page (📊)**  
+Browse the collected listings with sidebar filters (area, price range, free-text search), view summary metrics, and download the filtered data as CSV.
+
+### CLI
+
+Run the crawler from the terminal without the UI:
+
 ```sh
 python main.py
 ```
-The script will:
-   Start crawling Hemnet listing pages
-   Extract relevant property data
-   Save the collected data locally for further analysis
-You can customize crawl targets, filters, and scraping logic directly in the source code.
 
+---
+
+## Dependencies
+
+| Package | Purpose |
+|---------|---------|
+| `streamlit` | Dashboard UI |
+| `selenium` | JavaScript-rendered page downloading |
+| `beautifulsoup4` | HTML parsing |
+| `pandas` | Data handling in the dashboard |
+
+---
 
 ## Disclaimer
-This project is intended for educational and personal use only.
+
+This project is intended for educational and personal use only.  
 Please respect Hemnet’s terms of service and avoid excessive or aggressive crawling.
-
-
-
