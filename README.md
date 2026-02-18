@@ -4,6 +4,10 @@ A Python-based web crawler for collecting property listing data from **Hemnet** 
 
 ---
 
+## Short Demo
+
+https://github.com/user-attachments/assets/84769665-9199-4013-a4eb-5be2811f5b81
+
 ## Features
 
 - Crawl real estate listings from Hemnet
@@ -85,5 +89,6 @@ You can customize crawl targets, filters, and scraping logic directly in the sou
 ## Disclaimer
 This project is intended for educational and personal use only.
 Please respect Hemnet’s terms of service and avoid excessive or aggressive crawling.
+
 
 
