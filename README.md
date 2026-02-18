@@ -4,12 +4,6 @@ Stop guessing what sold for what. **HemnetHound** scrapes every sold listing you
 
 ---
 
-## Short Demo
-
-https://github.com/user-attachments/assets/84769665-9199-4013-a4eb-5be2811f5b81
-
----
-
 ## Overview
 
 HemnetHound is a two-part tool built for anyone who wants a data-driven look at the Swedish real estate market:
@@ -18,6 +12,12 @@ HemnetHound is a two-part tool built for anyone who wants a data-driven look at 
 2. **Dashboard** — a Streamlit app where you can kick off new scrape runs, explore the collected listings with live filters, and export everything as a CSV — no code required.
 
 Whether you're tracking a neighbourhood, researching before a purchase, or just curious about the market, HemnetHound gives you the raw numbers without the manual copy-pasting.
+
+---
+
+## Short Demo
+
+https://github.com/user-attachments/assets/84769665-9199-4013-a4eb-5be2811f5b81
 
 ---
 
